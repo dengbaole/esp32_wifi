@@ -17,6 +17,7 @@ void task_handle(void* pvParameters) {
 			ESP_LOGI("queuee", "task_handle: %d", queue_data.value);
 		}
 	}
+	vTaskDelete(NULL);
 }
 
 
@@ -29,13 +30,17 @@ void task_handle2(void* pvParameters) {
 		vTaskDelay(pdMS_TO_TICKS(1000));
 		queue_data.value++;
 	}
+	vTaskDelete(NULL);
 }
 
 
 
 
 void task_init(void) {
+	//创建队列
 	queue_handle = xQueueCreate(10, sizeof(queue_data_t));
+	//复位队列
+	xQueueReset(queue_handle);
 	xTaskCreatePinnedToCore(task_handle, "task_handle", 2048, NULL, 10, NULL, 1);
 	xTaskCreatePinnedToCore(task_handle2, "task_handle2", 2048, NULL, 10, NULL, 1);
 }
