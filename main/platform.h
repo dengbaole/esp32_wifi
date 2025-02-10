@@ -9,7 +9,10 @@
 #include "driver/gpio.h"
 #include "esp_log.h"
 #include "esp_task_wdt.h"
-
+#include "esp_wifi.h"
+#include "esp_log.h"
+#include "esp_event.h"
+#include "nvs_flash.h"
 
 
 

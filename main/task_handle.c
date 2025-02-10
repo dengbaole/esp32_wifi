@@ -30,12 +30,28 @@ void task_handle2(void* pvParameters) {
 	}
 }
 
+void wifi_handle(void* pvParameters) {
+	EventBits_t ev;
+	//打印事件位
+	esp_err_t ret = nvs_flash_init();
+    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        ret = nvs_flash_init();
+    }
+    ESP_ERROR_CHECK( ret );
 
+	
+	while(1) {
+		printf("NUM3_BIT\n");
+		vTaskDelay(pdMS_TO_TICKS(1000));
+	}
+}
 
 
 void task_init(void) {
 	test_event = xEventGroupCreate();
 	xTaskCreatePinnedToCore(task_handle, "task_handle", 2048, NULL, 10, NULL, 1);
 	xTaskCreatePinnedToCore(task_handle2, "task_handle2", 2048, NULL, 10, NULL, 1);
+	xTaskCreatePinnedToCore(wifi_handle, "wifi_handle", 2048, NULL, 10, NULL, 0);
 }
 
