@@ -150,3 +150,30 @@ void wifi_scan_m(void)
     }
 
 }
+
+// void wifi_init(void) {
+//     esp_err_t ret = nvs_flash_init();
+//     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+//         ESP_ERROR_CHECK(nvs_flash_erase());
+//         ret = nvs_flash_init();
+//     }
+//     ESP_ERROR_CHECK(ret);
+
+//     // Initialize the WiFi driver
+//     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+//     ESP_ERROR_CHECK(esp_wifi_init(&cfg));
+// }
+
+// void wifi_connect(const char *ssid, const char *password) {
+//     wifi_config_t wifi_config = {};
+//     strncpy((char *)wifi_config.sta.ssid, ssid, WIFI_SSID_MAX_LEN);
+//     strncpy((char *)wifi_config.sta.password, password, WIFI_PASS_MAX_LEN);
+
+//     wifi_config.sta.threshold.authmode = WIFI_AUTH_WPA2_PSK;
+
+//     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
+//     ESP_ERROR_CHECK(esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config));
+//     ESP_ERROR_CHECK(esp_wifi_start());
+//     ESP_ERROR_CHECK(esp_wifi_connect());
+//     ESP_LOGI(TAG, "Connecting to %s...", ssid);
+// }

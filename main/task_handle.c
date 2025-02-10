@@ -43,7 +43,7 @@ void wifi_handle(void* pvParameters) {
     }
     ESP_ERROR_CHECK( ret );
 
-	// wifi_scan_m();
+	wifi_scan_m();
 	while(1) {
 		printf("NUM3_BIT\n");
 		vTaskDelay(pdMS_TO_TICKS(1000));
@@ -55,6 +55,6 @@ void task_init(void) {
 	test_event = xEventGroupCreate();
 	xTaskCreatePinnedToCore(task_handle, "task_handle", 2048, NULL, 10, NULL, 1);
 	xTaskCreatePinnedToCore(task_handle2, "task_handle2", 2048, NULL, 10, NULL, 1);
-	xTaskCreatePinnedToCore(wifi_handle, "wifi_handle", 2048, NULL, 10, NULL, 0);
+	xTaskCreatePinnedToCore(wifi_handle, "wifi_handle", 4096, NULL, 10, NULL, 0);
 }
 
