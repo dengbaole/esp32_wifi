@@ -19,13 +19,16 @@ void task_handle(void* pvParameters) {
 void task_handle2(void* pvParameters) {
 	EventBits_t ev;
 	//打印事件位
+	led_init();
 	while(1) {
 		ev = xEventGroupWaitBits(test_event, NUM0_BIT | NUM1_BIT, pdTRUE, pdFALSE, portMAX_DELAY);
 		if(ev & NUM0_BIT) {
 			printf("NUM0_BIT\n");
+			led_on();
 		}
 		if(ev & NUM1_BIT) {
 			printf("NUM1_BIT\n");
+			led_off();
 		}
 	}
 }
@@ -40,7 +43,7 @@ void wifi_handle(void* pvParameters) {
     }
     ESP_ERROR_CHECK( ret );
 
-	
+	// wifi_scan_m();
 	while(1) {
 		printf("NUM3_BIT\n");
 		vTaskDelay(pdMS_TO_TICKS(1000));
